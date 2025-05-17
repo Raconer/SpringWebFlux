@@ -1,0 +1,43 @@
+server:
+  port: 8080
+  shutdown: graceful
+  error:
+    whitelabel:
+      enabled: true
+  servlet:
+    context-path: /api
+spring:
+  application:
+    name: SpringWebFlux
+  flyway:
+    repair: true
+    enabled: true # SQL 셋팅
+    url: jdbc:mysql://localhost:3306/study?useSSL=false&allowPublicKeyRetrieval=true
+    user: ENC(qg1Yqim1cftD0KfzsznO3Q==)
+    password: ENC(8atmq3OouyuseZ4bFnhKFw==)
+    locations: classpath:sql
+  r2dbc:
+    url: r2dbc:mysql://localhost:3306/study?useSSL=false&allowPublicKeyRetrieval=true
+    username: ENC(qg1Yqim1cftD0KfzsznO3Q==)
+    password: ENC(8atmq3OouyuseZ4bFnhKFw==)
+    properties:
+      sslMode: DISABLED
+      serverTimezone: Asia/Seoul
+    pool:
+      initial-size: 10
+      max-size: 10
+      max-life-time: 30m
+      max-create-connection-time: 3s
+springdoc:
+  api-docs:
+    enabled: true
+  swagger-ui:
+    path: /swagger/index.html
+    supported-submit-methods: [get, post, put, delete]
+    tags-sorter: alpha
+    operations-sorter: method
+    groups-order: ASC
+jasypt:
+  encryptor:
+    bean: jasyptStringEncryptor
+
